@@ -30,7 +30,7 @@ getit('files/test.txt', { cwd: __dirname }, function(err, data) {
 });
 ```
 
-Specifying the `cwd` option has no effect on remote requests, but there might be other options added in time to tweak the [request](https://github.com/mikeal/request) behaviour.
+Specifying the `cwd` option has no effect on remote requests, but there might be other options added in time to tweak the [request](https://github.com/mikeal/request) behaviour eventually.  The general principle is you should be able to use `getit` to get the content of both local and remote resources without having to dramatically change the way you use the library.
 
 ## Custom URL Schemes
 
@@ -58,6 +58,10 @@ module.exports = function(parts, original) {
 };
 ```
 
-The task of the scheme translator is to convert a url of the custom scheme into a standard URI that can be passed to the request library to GET.  
+The task of the scheme translator is to convert a url of the custom scheme into a standard URI that can be passed to the [request](https://github.com/mikeal/request) library to GET.  
 
-To create your own scheme translator simply fork the library, decide on the scheme / protocol prefix (e.g. github, flickr, etc) and then create the relevant translator in the `lib/schemes` directory.  When `getit` encounters a request for a url matching your custom scheme the translator will be used before actually requesting the url.  Simple.
+To create your own scheme translator simply fork the library, decide on the scheme / protocol prefix (e.g. github, flickr, etc) and then create the relevant translator in the `lib/schemes` directory.  When `getit` encounters a request for a url matching your custom scheme translator will be required and involved before actually requesting the url.  Simple.
+
+## Roadmap
+
+- Binary file handling
