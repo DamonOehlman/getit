@@ -62,14 +62,10 @@ The task of the scheme translator is to convert a url of the custom scheme into 
 
 To create your own scheme translator simply fork the library, decide on the scheme / protocol prefix (e.g. github, flickr, etc) and then create the relevant translator in the `lib/schemes` directory.  When `getit` encounters a request for a url matching your custom scheme translator will be required and involved before actually requesting the url.  Simple.
 
+<a id="using-streams" />
 ## Using Streams
 
 If you would like to make use node's excellent streams support, then you can do that very easily.  Simply call `getit` but don't provide a callback function.  In this mode getit will return a stream that can be piped to another stream, e.g.
 
 ```js
 getit('github://DamonOehlman/getit/test/files/test.txt').pipe(fs.createWriteStream('testfile.txt'));
-```
-
-## Roadmap
-
-- Binary file handling
