@@ -21,6 +21,12 @@ describe('local loading test', function() {
         });
     });
     
+    it('should be able to expand aliases', function() {
+        var target = getit.expandAliases('test!test.txt', opts.aliases);
+        expect(target).to.exist;
+        expect(target).to.equal('github://DamonOehlman/getit/test/files/test.txt');
+    });
+    
     it('should be able to load a remote file (using an alias)', function(done) {
         getit('test!test.txt', opts, function(err, data) {
             expect(err).to.not.exist;
