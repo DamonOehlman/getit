@@ -10,17 +10,20 @@
   },
   "dependencies": {
     "debug": "*",
+    "mkdirp": "*",
     "request": "2.x.x"
   },
 
   "devDependencies": {
-    "chai": "0.3.x"
+    "chai": "0.3.x",
+    "rimraf": "2.x.x"
   },
 
   "repository": {
     "type": "git",
     "url": "git://github.com/DamonOehlman/getit.git"
   },
+  
   "bugs": {
     "url": "http://github.com/DamonOehlman/getit/issues"
   },
