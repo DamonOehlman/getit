@@ -2,6 +2,8 @@
 
 This is a simple remote file loader that makes it easy to open both local and remote files in a simple (and consistent) way.
 
+<a href="http://travis-ci.org/#!/DamonOehlman/getit"><img src="https://secure.travis-ci.org/DamonOehlman/getit.png" alt="Build Status"></a>
+
 ## Example Usage
 
 Getting a file:
