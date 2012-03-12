@@ -15,6 +15,7 @@
   },
 
   "devDependencies": {
+    "mocha": "*",
     "chai": "0.3.x",
     "rimraf": "2.x.x"
   },
