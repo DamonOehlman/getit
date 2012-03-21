@@ -33,4 +33,11 @@ describe('local loading test', function() {
             done(err);
         });
     });
+    
+    it('should return an error for a non-existant remote file', function(done) {
+        getit('github://DamonOehlman/getit/test/files/test2.txt', opts, function(err, data) {
+            expect(err).to.exist;
+            done();
+        });
+    });
 });

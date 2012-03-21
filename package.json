@@ -29,7 +29,7 @@
     "url": "http://github.com/DamonOehlman/getit/issues"
   },
   
-  "scripts": { "test": "mocha --reporter spec --timeout 5000" },
+  "scripts": { "test": "mocha --reporter spec --timeout 10000" },
   
   "contributors": []
 }

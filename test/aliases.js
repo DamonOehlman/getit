@@ -10,7 +10,7 @@ var fs = require('fs'),
         }
     };
     
-describe('local loading test', function() {
+describe('aliases test', function() {
     before(function(done) {
         fs.readFile(path.resolve(__dirname, 'files/test.txt'), 'utf8', function(err, data) {
             if (! err) {

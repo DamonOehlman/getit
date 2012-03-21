@@ -10,7 +10,7 @@ var fs = require('fs'),
     metaFile = cacheFile + '.meta',
     cacheTextOverride = 'cached_text';
     
-describe('local loading test', function() {
+describe('caching tests', function() {
     before(function(done) {
         fs.readFile(path.resolve(__dirname, 'files/test.txt'), 'utf8', function(err, data) {
             if (! err) {
