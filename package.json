@@ -3,7 +3,7 @@
   "description": "Retrieve local and remote files through a simple interface",
   "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
   "tags": [ "request", "http" ],
-  "version": "0.1.3",
+  "version": "0.1.4",
   "main": "index.js",
   "engines": {
     "node": ">= 0.4.x < 0.7.0"
