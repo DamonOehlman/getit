@@ -2,8 +2,11 @@
   "name": "getit",
   "description": "Retrieve local and remote files through a simple interface",
   "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
-  "tags": [ "request", "http" ],
-  "version": "0.1.4",
+  "tags": [
+    "request",
+    "http"
+  ],
+  "version": "0.1.5",
   "main": "index.js",
   "engines": {
     "node": ">= 0.4.x < 0.7.0"
@@ -13,23 +16,21 @@
     "mkdirp": "*",
     "request": "2.x.x"
   },
-
   "devDependencies": {
     "mocha": "*",
     "chai": "0.3.x",
     "rimraf": "2.x.x"
   },
-
   "repository": {
     "type": "git",
     "url": "git://github.com/DamonOehlman/getit.git"
   },
-  
   "bugs": {
     "url": "http://github.com/DamonOehlman/getit/issues"
   },
-  
-  "scripts": { "test": "mocha --reporter spec --timeout 10000" },
-  
-  "contributors": []
+  "scripts": {
+    "test": "mocha --reporter spec --timeout 10000"
+  },
+  "contributors": [],
+  "optionalDependencies": {}
 }
