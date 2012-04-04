@@ -71,3 +71,25 @@ If you would like to make use node's excellent streams support, then you can do 
 
 ```js
 getit('github://DamonOehlman/getit/test/files/test.txt').pipe(fs.createWriteStream('testfile.txt'));
+
+## GetIt Options
+
+The `getit` function supports a second argument for providing options to change the default getit behaviour.  
+
+### Caching use the cachePath option
+
+If you provide an optional `cachePath`, then getit will cache a copy of the data retrieved in the specified path.  In addition to the data retrieved, an [etag](http://en.wikipedia.org/wiki/HTTP_ETag) value will be stored in a lookup file.  This will be used in subsequent lookups using the `If-None-Match` header.
+
+By default, caching will only occur on a server that provides an etag value, but this can be overridden by also setting the `cacheAny` option to true.
+
+```js
+var opts = {
+    cachePath: '/tmp'
+};
+
+getit('github://DamonOehlman/getit/test/files/test.txt', opts, function(err, data) {
+    
+});
+```
+
+Finally, if you would prefer not to wait around for a HTTP request and a `304` response, then you can provide the `preferLocal` option always used the cached copy of a file if it exists in the cache folder.
