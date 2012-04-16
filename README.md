@@ -71,6 +71,7 @@ If you would like to make use node's excellent streams support, then you can do 
 
 ```js
 getit('github://DamonOehlman/getit/test/files/test.txt').pipe(fs.createWriteStream('testfile.txt'));
+```
 
 ## GetIt Options
 
