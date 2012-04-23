@@ -34,4 +34,8 @@ describe('aliases test', function() {
             done(err);
         });
     });
+    
+    it('should register anything with an alias as remote', function() {
+        expect(getit.isRemote('test!test.txt')).to.be.ok;
+    });
 });
