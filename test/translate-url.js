@@ -1,4 +1,4 @@
-var expect = require('chai').expect,
+var assert = require('assert'),
     getit = require('../'),
     checks = {
         http: {
@@ -13,7 +13,7 @@ var expect = require('chai').expect,
     };
     
 function check(section) {
-    expect(getit.getUrl(section.before)).to.equal(section.after);
+    assert(getit.getUrl(section.before), section.after);
 }
 
 describe('url translation tests', function() {

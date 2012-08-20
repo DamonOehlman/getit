@@ -1,4 +1,4 @@
-var expect = require('chai').expect,
+var assert = require('assert'),
     getit = require('../'),
     testContent;
     
@@ -12,8 +12,8 @@ describe('gcode scheme test', function() {
     
     it('should be able to download a file using the gcode scheme', function(done) {
         getit('gcode://leveldb/git/README', function(err, content) {
-            expect(err).to.not.exist;
-            expect(content).to.equal(testContent);
+            assert.ifError(err);
+            assert.equal(content, testContent);
             
             done(err);
         });

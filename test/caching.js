@@ -1,6 +1,6 @@
-var fs = require('fs'),
+var assert = require('assert'),
+    fs = require('fs'),
     path = require('path'),
-    expect = require('chai').expect,
     getit = require('../'),
     rimraf = require('rimraf'),
     testContent,
@@ -26,28 +26,28 @@ describe('caching tests', function() {
     });
     
     it('should be able to create a filename suitable for caching', function() {
-        expect(getit.getCacheTarget(target)).to.equal('github-DamonOehlman-getit-test-files-test.txt');
+        assert.equal(getit.getCacheTarget(target), 'github-DamonOehlman-getit-test-files-test.txt');
     });
     
     it('should be able to get the non-cached version of the file', function(done) {
         getit(target, { cachePath: cacheFolder }, function(err, data) {
-            expect(err).to.not.exist;
-            expect(data).to.equal(testContent);
+            assert.ifError(err);
+            assert.equal(data, testContent);
             done(err);
         });
     });
     
     it('should have created a cache file', function(done) {
         fs.readFile(cacheFile, 'utf8', function(err, data) {
-            expect(err).to.not.exist;
-            expect(data).to.equal(testContent);
+            assert.ifError(err);
+            assert.equal(data, testContent);
+
             done(err);
         });
     });
     
     it('should have created an metadata file', function(done) {
         fs.readFile(metaFile, 'utf8', function(err, data) {
-            expect(err).to.not.exist;
             done(err);
         });
     });
@@ -60,8 +60,8 @@ describe('caching tests', function() {
             }
             else {
                 getit(target, { cachePath: cacheFolder }, function(err, data) {
-                    expect(err).to.not.exist;
-                    expect(data).to.equal(cacheTextOverride);
+                    assert.ifError(err);
+                    assert.equal(data, cacheTextOverride);
                     done(err);
                 });
             }

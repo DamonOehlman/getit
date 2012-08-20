@@ -1,6 +1,6 @@
-var fs = require('fs'),
+var assert = require('assert'),
+    fs = require('fs'),
     path = require('path'),
-    expect = require('chai').expect,
     getit = require('../'),
     testfile = path.resolve(__dirname, 'test.txt'),
     testContent,
@@ -25,8 +25,8 @@ describe('streamed download test', function() {
         stream.pipe(fs.createWriteStream(testfile));
         stream.on('end', function() {
             fs.readFile(testfile, 'utf8', function(err, data) {
-                expect(err).to.not.exist;
-                expect(data).to.equal(testContent);
+                assert.ifError(err);
+                assert.equal(data, testContent);
                 
                 done();
             });

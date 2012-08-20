@@ -1,6 +1,6 @@
-var fs = require('fs'),
+var assert = require('assert'),
+    fs = require('fs'),
     path = require('path'),
-    expect = require('chai').expect,
     getit = require('../'),
     testContent,
     opts = {
@@ -20,23 +20,23 @@ describe('local loading test', function() {
     
     it('should be able to load a local file', function(done) {
         getit('files/test.txt', opts, function(err, data) {
-            expect(err).to.not.exist;
-            expect(data).to.equal(testContent);
+            assert.ifError(err);
+            assert.equal(data, testContent);
             done(err);
         });
     });
     
     it('should be able to load a remote file', function(done) {
         getit('github://DamonOehlman/getit/test/files/test.txt', opts, function(err, data) {
-            expect(err).to.not.exist;
-            expect(data).to.equal(testContent);
+            assert.ifError(err);
+            assert.equal(data, testContent);
             done(err);
         });
     });
     
     it('should return an error for a non-existant remote file', function(done) {
         getit('github://DamonOehlman/getit/test/files/test2.txt', opts, function(err, data) {
-            expect(err).to.exist;
+            assert(err);
             done();
         });
     });
