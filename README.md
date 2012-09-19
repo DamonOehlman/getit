@@ -57,7 +57,7 @@ getit('gist://3344823', function(err, content) {
 To get a specific file from a particular gist:
 
 ```js
-getit('gist://3344823/gistfile1.md', function(err, content) {
+getit('gist://1261033/bridge-server.js', function(err, content) {
 });
 ```
 
