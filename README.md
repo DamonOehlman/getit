@@ -45,6 +45,22 @@ getit('github://DamonOehlman/getit/index.js', function(err, data) {
 });
 ```
 
+### Github Gists (gist://)
+
+To get the default file (first file) from a particular gist:
+
+```js
+getit('gist://3344823', function(err, content) {
+});
+```
+
+To get a specific file from a particular gist:
+
+```js
+getit('gist://3344823/gistfile1.md', function(err, content) {
+});
+```
+
 ## Contributing URL Schemes
 
 I haven't as yet ported the schemes from interleave across yet, but the process is incredibly simple, and the content of the [github scheme translator](/DamonOehlman/getit/blob/master/lib/schemes/github.js) is shown below:
