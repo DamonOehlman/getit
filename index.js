@@ -1,7 +1,7 @@
 var debug = require('debug')('getit'),
     fs = require('fs'),
     path = require('path'),
-    request = require('request'),
+    request = require('hyperquest'),
     mkdirp = require('mkdirp'),
     url = require('url'),
     reRemote = /^\w[\w\.\+\-]+\:\/\//,
@@ -111,24 +111,36 @@ function getit(target, opts, callback) {
                 }
                 else {
                     debug('requesting remote resource (' + targetUrl + '), for target: ' + target);
-                    request(requestOpts, function(err, res, body) {
+                    var req = request(requestOpts);
+
+                    req.on('response', function(res) {
+                        var body = '';
+
                         debug('received response for target: ' + target);
 
-                        // ensure we have a response to work with
-                        res = res || {};
-
+                        // if cached, then return the catched content
                         if (reStatusCached.test(res.statusCode)) {
-                            callback(err, cacheData.data);
+                            callback(null, cacheData.data);
                         }
+                        // otherwise, if not ok, then return an error
                         else if (! reStatusOK.test(res.statusCode)) {
                             callback(new Error(((res.headers || {}).status || 'Not found')) + ': ' + targetUrl);
                         }
+                        // otherwise, proceed to download the content
                         else {
-                            _updateCache(target, opts, err, res, body, function() {
-                                callback(err, err ? null : body);
+                            res.on('data', function(buffer) {
+                                body += buffer.toString('utf8');
+                            });
+
+                            res.on('end', function() {
+                                _updateCache(target, opts, null, res, body, function() {
+                                    callback(null, body);
+                                });
                             });
                         }
                     });
+
+                    req.on('error', callback);
                 }
             });
 

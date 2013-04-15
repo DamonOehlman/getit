@@ -28,7 +28,6 @@ describe('local loading test', function() {
     
     it('should be able to load a remote file', function(done) {
         getit('github://DamonOehlman/getit/test/files/test.txt', opts, function(err, data) {
-            assert.ifError(err);
             assert.equal(data, testContent);
             done(err);
         });
