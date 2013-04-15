@@ -59,9 +59,11 @@ describe('caching tests', function() {
                 done(err);
             }
             else {
-                getit(target, { cachePath: cacheFolder }, function(err, data) {
+                getit(target, { cachePath: cacheFolder }, function(err, data, cached) {
                     assert.ifError(err);
                     assert.equal(data, cacheTextOverride);
+                    assert(cached, 'Cached flag not set');
+                    
                     done(err);
                 });
             }

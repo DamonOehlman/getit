@@ -120,7 +120,7 @@ function getit(target, opts, callback) {
 
                         // if cached, then return the catched content
                         if (reStatusCached.test(res.statusCode)) {
-                            callback(null, cacheData.data);
+                            callback(null, cacheData.data, true);
                         }
                         // otherwise, if not ok, then return an error
                         else if (! reStatusOK.test(res.statusCode)) {
