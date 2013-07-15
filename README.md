@@ -4,6 +4,10 @@ This is a simple remote file loader that makes it easy to open both local and re
 
 <a href="http://travis-ci.org/#!/DamonOehlman/getit"><img src="https://secure.travis-ci.org/DamonOehlman/getit.png" alt="Build Status"></a>
 
+## Installation
+
+[![NPM](http://nodei.co/npm/getit.png)](http://nodei.co/npm/getit/)
+
 ## Example Usage
 
 Getting a file:
