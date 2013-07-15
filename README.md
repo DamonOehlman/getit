@@ -1,5 +1,3 @@
-# Get It
-
 [![NPM](http://nodei.co/npm/getit.png)](http://nodei.co/npm/getit/)
 
 This is a simple remote file loader that makes it easy to open both local and remote files in a simple (and consistent) way.  Behind the scenes getit uses the excellent, battle-tested node [request](https://github.com/mikeal/request) module to to the heavy lifting.
