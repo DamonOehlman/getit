@@ -1,16 +1,9 @@
 {
   "name": "getit",
   "description": "Retrieve local and remote files through a simple interface",
-  "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
-  "tags": [
-    "request",
-    "http"
-  ],
+  "author": "Damon Oehlman <damon.oehlman@gmail.com>",
   "version": "0.3.1",
   "main": "index.js",
-  "engines": {
-    "node": ">= 0.4.x < 0.9.0"
-  },
   "dependencies": {
     "debug": "*",
     "mkdirp": "*",
@@ -18,7 +11,9 @@
   },
   "devDependencies": {
     "mocha": "1.9.x",
-    "rimraf": "2.x.x"
+    "rimraf": "2.x.x",
+    "jshint": "~2.1.4",
+    "codeme": "~0.1.1"
   },
   "repository": {
     "type": "git",
@@ -28,8 +23,21 @@
     "url": "http://github.com/DamonOehlman/getit/issues"
   },
   "scripts": {
-    "test": "mocha --reporter spec --timeout 10000"
+    "gendocs": "$(npm bin)/codeme > README.md",
+    "lint": "$(npm bin)/jshint *.js && $(npm bin)/jshint lib/schemes/*.js",
+    "test": "$(npm bin)/mocha --reporter spec --timeout 10000"
   },
   "contributors": [],
-  "optionalDependencies": {}
+  "optionalDependencies": {},
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [
+    "download",
+    "fetch",
+    "curl",
+    "wget",
+    "request"
+  ],
+  "license": "MIT"
 }
