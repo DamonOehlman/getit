@@ -8,17 +8,14 @@
   ],
   "version": "0.3.1",
   "main": "index.js",
-  "engines": {
-    "node": ">= 0.4.x < 0.9.0"
-  },
   "dependencies": {
     "debug": "*",
-    "mkdirp": "*",
-    "hyperquest": "0.1.x"
+    "mkdirp": "~0.3.5",
+    "hyperquest": "~0.1.7"
   },
   "devDependencies": {
-    "mocha": "1.9.x",
-    "rimraf": "2.x.x"
+    "mocha": "~1.12.0",
+    "rimraf": "~2.2.2"
   },
   "repository": {
     "type": "git",
