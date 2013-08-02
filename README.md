@@ -1,10 +1,14 @@
 # getit
 
-[![NPM](http://nodei.co/npm/getit.png)](http://nodei.co/npm/getit/)
+This is a simple remote file loader that makes it easy to open both local 
+and remote files in a simple (and consistent) way.  Behind the scenes getit
+uses [hyperquest](https://github.com/substack/hyperquest) module to to the
+heavy lifting.
 
-This is a simple remote file loader that makes it easy to open both local and remote files in a simple (and consistent) way.  Behind the scenes getit uses the excellent, battle-tested node [request](https://github.com/mikeal/request) module to to the heavy lifting.
-
-<a href="http://travis-ci.org/#!/DamonOehlman/getit"><img src="https://secure.travis-ci.org/DamonOehlman/getit.png" alt="Build Status"></a>
+[
+![Build Status]
+(https://travis-ci.org/DamonOehlman/getit.png?branch=master)
+](https://travis-ci.org/DamonOehlman/getit)
 
 ## Example Usage
 
@@ -26,7 +30,9 @@ getit('http://www.google.com/', function(err, data) {
 
 ### Specifying the Current Working Directory
 
-By default, all files are resolved to the current working directory through using  [path.resolve](http://nodejs.org/docs/latest/api/path.html#path.resolve).  The default directory resolved against can be overriden, however, by passing options to the `getit` function call:
+By default, all files are resolved to the current working directory through 
+using `path.resolve`. The default directory resolved against can be
+overriden, however, by passing options to the `getit` function call:
 
 ```js
 getit('files/test.txt', { cwd: __dirname }, function(err, data) {
@@ -34,18 +40,63 @@ getit('files/test.txt', { cwd: __dirname }, function(err, data) {
 });
 ```
 
-Specifying the `cwd` option has no effect on remote requests, but there might be other options added in time to tweak the [request](https://github.com/mikeal/request) behaviour eventually.  The general principle is you should be able to use `getit` to get the content of both local and remote resources without having to dramatically change the way you use the library.
+Specifying the `cwd` option has no effect on remote requests, but there 
+might be other options added in time to tweak the default
+hyperquest behaviour eventually.  The general principle is you should be 
+able to use `getit` to get the content of both local and remote resources
+without having to dramatically change the way you use the library.
 
-## Custom URL Schemes
+## GetIt Options
 
-Similar code to this has been implemented in the JS build tool [Interleave](https://github.com/DamonOehlman/interleave) and will eventually be replaced by integrating getit instead.  For this reason some helper URI schemes have been added.
+The `getit` function supports a second argument for providing options to
+change the default getit behaviour.  
 
-### Github Includes (github://)
+### Caching use `cachePath`
+
+If you provide an optional `cachePath`, then getit will cache a copy of 
+the data retrieved in the specified path.  In addition to the data
+retrieved, an [etag](http://en.wikipedia.org/wiki/HTTP_ETag) value will
+be stored in a lookup file.  This will be used in subsequent lookups
+using the `If-None-Match` header.
+
+By default, caching will only occur on a server that provides an etag
+value, but this can be overridden by also setting the `cacheAny`
+option to true.
 
 ```js
-getit('github://DamonOehlman/getit/index.js', function(err, data) {
-});
+var opts = {
+  cachePath: '/tmp'
+};
+
+getit(
+  'github://DamonOehlman/getit/test/files/test.txt',
+  opts,
+  function(err, data) {
+    
+  }
+);
 ```
+
+Finally, if you would prefer not to wait around for a HTTP request and
+a `304` response, then you can provide the `preferLocal` option always
+used the cached copy of a file if it exists in the cache folder.
+
+### Aggressive caching with `preferLocal`
+
+If you __really__ want to avoid a round-trip to web servers to check the
+freshness of the cache, then it might be worth using the `preferLocal`
+option also.  This instructs getit to skip the `etag` check if it finds
+the required file in the cache directory.
+
+If you do decide to implement this functionality, it's recommended that
+you provide some option in your application to allow users to clear the
+local cache path.
+
+## getit cache helpers
+
+### cache.get(target, opts, callback)
+
+### cache.update(target, opts, resErr, res, body, callback)
 
 ### Github Gists (gist://)
 
@@ -63,49 +114,27 @@ getit('gist://1261033/bridge-server.js', function(err, content) {
 });
 ```
 
-## Contributing URL Schemes
-
-I haven't as yet ported the schemes from interleave across yet, but the process is incredibly simple, and the content of the [github scheme translator](/DamonOehlman/getit/blob/master/lib/schemes/github.js) is shown below:
+### Github Includes (github://)
 
 ```js
-var url = require('url');
-
-module.exports = function(parts, original) {
-    var pathParts = parts.pathname.replace(/^\//, '').split('/');
-    
-    return 'https://raw.github.com/' + parts.host + '/' + 
-        pathParts[0] + '/master/' + pathParts.slice(1).join('/');
-};
-```
-
-The task of the scheme translator is to convert a url of the custom scheme into a standard URI that can be passed to the [request](https://github.com/mikeal/request) library to GET.  
-
-To create your own scheme translator simply fork the library, decide on the scheme / protocol prefix (e.g. github, flickr, etc) and then create the relevant translator in the `lib/schemes` directory.  When `getit` encounters a request for a url matching your custom scheme translator will be required and involved before actually requesting the url.  Simple.
-
-## GetIt Options
-
-The `getit` function supports a second argument for providing options to change the default getit behaviour.  
-
-### Caching use `cachePath`
-
-If you provide an optional `cachePath`, then getit will cache a copy of the data retrieved in the specified path.  In addition to the data retrieved, an [etag](http://en.wikipedia.org/wiki/HTTP_ETag) value will be stored in a lookup file.  This will be used in subsequent lookups using the `If-None-Match` header.
-
-By default, caching will only occur on a server that provides an etag value, but this can be overridden by also setting the `cacheAny` option to true.
-
-```js
-var opts = {
-    cachePath: '/tmp'
-};
-
-getit('github://DamonOehlman/getit/test/files/test.txt', opts, function(err, data) {
-    
+getit('github://DamonOehlman/getit/index.js', function(err, data) {
 });
 ```
 
-Finally, if you would prefer not to wait around for a HTTP request and a `304` response, then you can provide the `preferLocal` option always used the cached copy of a file if it exists in the cache folder.
+## Custom URL Schemes
 
-### Aggressive caching with `preferLocal`
+Getit supports a number of custom url schemes to help you type less
+characters:
 
-If you __really__ want to avoid a round-trip to web servers to check the freshness of the cache, then it might be worth using the `preferLocal` option also.  This instructs getit to skip the `etag` check if it finds the required file in the cache directory.
+### Contributing URL Schemes
 
-If you do decide to implement this functionality, it's recommended that you provide some option in your application to allow users to clear the local cache path.
+The task of the scheme translator is to convert a url of the custom scheme
+into a standard URI that can be passed to the GET.
+
+To create your own scheme translator simply fork the library,
+decide on the scheme / protocol prefix (e.g. github, flickr, etc) and
+then create the relevant translator in the `lib/schemes` directory. 
+When `getit` encounters a request for a url matching your custom scheme
+translator will be required and involved before actually requesting the url.
+
+Simple.
