@@ -23,11 +23,6 @@ var cache = require('./cache');
   uses [hyperquest](https://github.com/substack/hyperquest) module to to the
   heavy lifting.
 
-  [
-  ![Build Status]
-  (https://travis-ci.org/DamonOehlman/getit.png?branch=master)
-  ](https://travis-ci.org/DamonOehlman/getit)
-
   ## Example Usage
 
   Getting a file:

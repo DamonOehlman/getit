@@ -21,7 +21,7 @@
     "url": "http://github.com/DamonOehlman/getit/issues"
   },
   "scripts": {
-    "gendocs": "codeme > README.md",
+    "gendocs": "gendocs > README.md",
     "lint": "jshint *.js && jshint lib/schemes/*.js",
     "test": "$(npm bin)/mocha --reporter spec --timeout 10000"
   },
