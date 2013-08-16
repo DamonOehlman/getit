@@ -5,10 +5,14 @@ and remote files in a simple (and consistent) way.  Behind the scenes getit
 uses [hyperquest](https://github.com/substack/hyperquest) module to to the
 heavy lifting.
 
-[
-![Build Status]
-(https://travis-ci.org/DamonOehlman/getit.png?branch=master)
-](https://travis-ci.org/DamonOehlman/getit)
+
+[![NPM](https://nodei.co/npm/getit.png)](https://nodei.co/npm/getit/)
+
+[![Build Status](https://travis-ci.org/DamonOehlman/getit.png?branch=master)](https://travis-ci.org/DamonOehlman/getit)
+[![stable](http://hughsk.github.io/stability-badges/dist/stable.svg)](http://github.com/hughsk/stability-badges)
+
+[![browser support](https://ci.testling.com/DamonOehlman/getit.png)](https://ci.testling.com/DamonOehlman/getit)
+
 
 ## Example Usage
 
@@ -98,6 +102,24 @@ local cache path.
 
 ### cache.update(target, opts, resErr, res, body, callback)
 
+## Custom URL Schemes
+
+Getit supports a number of custom url schemes to help you type less
+characters:
+
+### Contributing URL Schemes
+
+The task of the scheme translator is to convert a url of the custom scheme
+into a standard URI that can be passed to the GET.
+
+To create your own scheme translator simply fork the library,
+decide on the scheme / protocol prefix (e.g. github, flickr, etc) and
+then create the relevant translator in the `lib/schemes` directory. 
+When `getit` encounters a request for a url matching your custom scheme
+translator will be required and involved before actually requesting the url.
+
+Simple.
+
 ### Github Gists (gist://)
 
 To get the default file (first file) from a particular gist:
@@ -120,21 +142,3 @@ getit('gist://1261033/bridge-server.js', function(err, content) {
 getit('github://DamonOehlman/getit/index.js', function(err, data) {
 });
 ```
-
-## Custom URL Schemes
-
-Getit supports a number of custom url schemes to help you type less
-characters:
-
-### Contributing URL Schemes
-
-The task of the scheme translator is to convert a url of the custom scheme
-into a standard URI that can be passed to the GET.
-
-To create your own scheme translator simply fork the library,
-decide on the scheme / protocol prefix (e.g. github, flickr, etc) and
-then create the relevant translator in the `lib/schemes` directory. 
-When `getit` encounters a request for a url matching your custom scheme
-translator will be required and involved before actually requesting the url.
-
-Simple.
