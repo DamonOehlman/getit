@@ -125,16 +125,21 @@ Simple.
 To get the default file (first file) from a particular gist:
 
 ```js
-getit('gist://3344823', function(err, content) {
+getit('gist://DamonOehlman:6999398', function(err, content) {
 });
 ```
 
 To get a specific file from a particular gist:
 
 ```js
-getit('gist://1261033/bridge-server.js', function(err, content) {
+getit('gist://DamonOehlman:6877717/index.js', function(err, content) {
 });
 ```
+
+__NOTE:__ Github recently changed the way gist raw urls were formatted
+which has meant a change is needed in the getit format.  You must now also
+include the username of the owner of the gist when requesting the file
+as shown in the examples above.
 
 ### Github Includes (github://)
 
