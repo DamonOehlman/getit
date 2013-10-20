@@ -5,7 +5,7 @@ var debug = require('debug')('getit');
 var fs = require('fs');
 var path = require('path');
 var request = require('hyperquest');
-var url = require('url');
+var urlish = require('urlish');
 
 // regexes
 var reRemote = /^\w[\w\.\+\-]+\:\/\//;
@@ -210,13 +210,17 @@ var getLocal = getit.local = function(target, opts, callback) {
 };
 
 var getUrl = getit.getUrl = function(target) {
-  var parts = url.parse(target);
-  var scheme = parts.protocol.slice(0, parts.protocol.length - 1);
+  var parts = urlish(target);
   var translator;
+
+  // if we have no parts, just return the target
+  if (! parts) {
+    return target;
+  }
       
   // try and include the scheme translator
   try {
-    translator = require('./lib/schemes/' + scheme);
+    translator = require('./lib/schemes/' + parts.scheme);
   }
   catch (e) {
     // no translator found, leave the handler blank
