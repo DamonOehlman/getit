@@ -4,14 +4,14 @@ var assert = require('assert'),
 
 describe('gist scheme test', function() {
     before(function(done) {
-        getit('https://gist.github.com/DamonOehlman/6999398/raw', function(err, content) {
+        getit('https://gist.githubusercontent.com/DamonOehlman/6999398/raw', function(err, content) {
             snippet1 = content;
             done(err);
         });
     });
     
     before(function(done) {
-        getit('https://gist.github.com/DamonOehlman/6877717/raw/index.js', function(err, content) {
+        getit('https://gist.githubusercontent.com/DamonOehlman/6877717/raw/index.js', function(err, content) {
             snippet2 = content;
             done(err);
         });
