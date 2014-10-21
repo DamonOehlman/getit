@@ -6,8 +6,8 @@
   "main": "index.js",
   "dependencies": {
     "debug": "*",
+    "hyperquest": "^1.0.1",
     "mkdirp": "~0.5",
-    "hyperquest": "~0.3",
     "urlish": "~0.1"
   },
   "devDependencies": {
