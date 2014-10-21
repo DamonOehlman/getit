@@ -10,6 +10,7 @@
     "mkdirp": "~0.5",
     "urlish": "~0.1"
   },
+  "stability": "stable",
   "devDependencies": {
     "mocha": "^1",
     "rimraf": "^2"
