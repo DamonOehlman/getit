@@ -5,14 +5,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
-    "debug": "*",
-    "hyperquest": "^1.0.1",
+    "debug": "^2.6.1",
+    "hyperquest": "^2.1.2",
     "mkdirp": "~0.5",
-    "urlish": "~0.1"
+    "urlish": "^1.0.1"
   },
   "stability": "stable",
   "devDependencies": {
-    "mocha": "^2.4.5",
+    "mocha": "^3.2.0",
     "rimraf": "^2"
   },
   "repository": {
