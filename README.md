@@ -1,3 +1,4 @@
+
 # getit
 
 This is a simple remote file loader that makes it easy to open both local 
@@ -8,7 +9,7 @@ heavy lifting.
 
 [![NPM](https://nodei.co/npm/getit.png)](https://nodei.co/npm/getit/)
 
-[![Build Status](https://img.shields.io/travis/DamonOehlman/getit.svg?branch=master)](https://travis-ci.org/DamonOehlman/getit) [![stable](https://img.shields.io/badge/stability-stable-green.svg)](https://github.com/dominictarr/stability#stable) 
+[![stable](https://img.shields.io/badge/stability-stable-green.svg)](https://github.com/dominictarr/stability#stable) [![Build Status](https://api.travis-ci.org/DamonOehlman/getit.svg?branch=master)](https://travis-ci.org/DamonOehlman/getit) [![bitHound Score](https://www.bithound.io/github/DamonOehlman/getit/badges/score.svg)](https://www.bithound.io/github/DamonOehlman/getit) 
 
 ## Example Usage
 
@@ -148,7 +149,7 @@ getit('github://DamonOehlman/getit/index.js', function(err, data) {
 
 ### MIT
 
-Copyright (c) 2014 Damon Oehlman <damon.oehlman@gmail.com>
+Copyright (c) 2017 Damon Oehlman <damon.oehlman@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
