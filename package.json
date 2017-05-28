@@ -12,6 +12,9 @@
   },
   "stability": "stable",
   "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.3.0",
     "mocha": "^3.2.0",
     "rimraf": "^2"
   },
@@ -24,7 +27,7 @@
   },
   "scripts": {
     "gendocs": "gendocs > README.md",
-    "lint": "jshint *.js && jshint lib/schemes/*.js",
+    "lint": "eslint .",
     "test": "$(npm bin)/mocha --reporter spec -t 20s"
   },
   "directories": {
