@@ -1,53 +1,55 @@
-var assert = require('assert'),
-    getit = require('../'),
-    snippet1, snippet2;
+const assert = require('assert');
+const getit = require('../');
 
-describe('gist scheme test', function() {
-    before(function(done) {
-        getit('https://gist.githubusercontent.com/DamonOehlman/6999398/raw', function(err, content) {
-            snippet1 = content;
-            done(err);
-        });
-    });
-    
-    before(function(done) {
-        getit('https://gist.githubusercontent.com/DamonOehlman/6877717/raw/index.js', function(err, content) {
-            snippet2 = content;
-            done(err);
-        });
-    });
+describe('gist scheme test', () => {
+  let snippet1 = '';
+  let snippet2 = '';
 
-    it('should get the first file by gist id only', function(done) {
-        getit('gist://DamonOehlman:6999398', function(err, content) {
-            assert.ifError(err);
-            assert.equal(content, snippet1);
+  before((done) => {
+    getit('https://gist.githubusercontent.com/DamonOehlman/6999398/raw', (err, content) => {
+      snippet1 = content;
+      done(err);
+    });
+  });
 
-            done(err);
-        });
+  before((done) => {
+    getit('https://gist.githubusercontent.com/DamonOehlman/6877717/raw/index.js', (err, content) => {
+      snippet2 = content;
+      done(err);
     });
-    
-    it('should get a specified file when specified', function(done) {
-        getit('gist://DamonOehlman:6999398/Makefile', function(err, content) {
-            assert.ifError(err);
-            assert.equal(content, snippet1);
-        
-            done(err);
-        });
+  });
+
+  it('should get the first file by gist id only', (done) => {
+    getit('gist://DamonOehlman:6999398', (err, content) => {
+      assert.ifError(err);
+      assert.equal(content, snippet1);
+
+      done(err);
     });
-    
-    it('should error when a non-existant file is requested', function(done) {
-        getit('gist://DamonOehlman:6999398/test.js', function(err, content) {
-            assert(err);
-            done();
-        });
+  });
+
+  it('should get a specified file when specified', (done) => {
+    getit('gist://DamonOehlman:6999398/Makefile', (err, content) => {
+      assert.ifError(err);
+      assert.equal(content, snippet1);
+
+      done(err);
     });
-    
-    it('should get a specified file when the gist has more than one file', function(done) {
-        getit('gist://DamonOehlman:6877717/index.js', function(err, content) {
-            assert.ifError(err);
-            assert.equal(content, snippet2);
-            
-            done();
-        });
+  });
+
+  it('should error when a non-existant file is requested', (done) => {
+    getit('gist://DamonOehlman:6999398/test.js', (err) => {
+      assert(err);
+      done();
     });
+  });
+
+  it('should get a specified file when the gist has more than one file', (done) => {
+    getit('gist://DamonOehlman:6877717/index.js', (err, content) => {
+      assert.ifError(err);
+      assert.equal(content, snippet2);
+
+      done();
+    });
+  });
 });

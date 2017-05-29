@@ -1,12 +1,11 @@
 module.exports = {
     extends: [
-      "djo-base",
-      "plugin:jasmine/recommended"
+      "djo-base"
     ],
     plugins: [
-        "jasmine"
+        "mocha"
     ],
-    "env": {
-      jasmine: true
+    env: {
+      mocha: true
     }
 };
