@@ -1,7 +1,7 @@
 
 # getit
 
-This is a simple remote file loader that makes it easy to open both local 
+This is a simple remote file loader that makes it easy to open both local
 and remote files in a simple (and consistent) way.  Behind the scenes getit
 uses [hyperquest](https://github.com/substack/hyperquest) module to to the
 heavy lifting.
@@ -9,7 +9,7 @@ heavy lifting.
 
 [![NPM](https://nodei.co/npm/getit.png)](https://nodei.co/npm/getit/)
 
-[![stable](https://img.shields.io/badge/stability-stable-green.svg)](https://github.com/dominictarr/stability#stable) [![Build Status](https://api.travis-ci.org/DamonOehlman/getit.svg?branch=master)](https://travis-ci.org/DamonOehlman/getit) [![bitHound Score](https://www.bithound.io/github/DamonOehlman/getit/badges/score.svg)](https://www.bithound.io/github/DamonOehlman/getit) 
+[![stable](https://img.shields.io/badge/stability-stable-green.svg)](https://github.com/dominictarr/stability#stable) [![Build Status](https://api.travis-ci.org/DamonOehlman/getit.svg?branch=master)](https://travis-ci.org/DamonOehlman/getit) [![Code Climate](https://codeclimate.com/github/DamonOehlman/getit/badges/gpa.svg)](https://codeclimate.com/github/DamonOehlman/getit) 
 
 ## Example Usage
 
@@ -17,7 +17,7 @@ Getting a file:
 
 ```js
 getit('files/test.txt', function(err, data) {
-    
+
 });
 ```
 
@@ -25,36 +25,36 @@ Getting some online content:
 
 ```js
 getit('http://www.google.com/', function(err, data) {
-    
+
 });
 ```
 
 ### Specifying the Current Working Directory
 
-By default, all files are resolved to the current working directory through 
+By default, all files are resolved to the current working directory through
 using `path.resolve`. The default directory resolved against can be
 overriden, however, by passing options to the `getit` function call:
 
 ```js
 getit('files/test.txt', { cwd: __dirname }, function(err, data) {
-    
+
 });
 ```
 
-Specifying the `cwd` option has no effect on remote requests, but there 
+Specifying the `cwd` option has no effect on remote requests, but there
 might be other options added in time to tweak the default
-hyperquest behaviour eventually.  The general principle is you should be 
+hyperquest behaviour eventually.  The general principle is you should be
 able to use `getit` to get the content of both local and remote resources
 without having to dramatically change the way you use the library.
 
 ## GetIt Options
 
 The `getit` function supports a second argument for providing options to
-change the default getit behaviour.  
+change the default getit behaviour.
 
 ### Caching use `cachePath`
 
-If you provide an optional `cachePath`, then getit will cache a copy of 
+If you provide an optional `cachePath`, then getit will cache a copy of
 the data retrieved in the specified path.  In addition to the data
 retrieved, an [etag](http://en.wikipedia.org/wiki/HTTP_ETag) value will
 be stored in a lookup file.  This will be used in subsequent lookups
@@ -73,7 +73,7 @@ getit(
   'github://DamonOehlman/getit/test/files/test.txt',
   opts,
   function(err, data) {
-    
+
   }
 );
 ```
@@ -111,7 +111,7 @@ into a standard URI that can be passed to the GET.
 
 To create your own scheme translator simply fork the library,
 decide on the scheme / protocol prefix (e.g. github, flickr, etc) and
-then create the relevant translator in the `lib/schemes` directory. 
+then create the relevant translator in the `lib/schemes` directory.
 When `getit` encounters a request for a url matching your custom scheme
 translator will be required and involved before actually requesting the url.
 
