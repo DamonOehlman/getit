@@ -1,6 +1,6 @@
 {
   "extends": [
-    "djo-base"
+    "djo-base/.eslintrc"
   ],
   "plugins": [
     "mocha"
