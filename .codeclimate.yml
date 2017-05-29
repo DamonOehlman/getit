@@ -5,5 +5,10 @@ engines:
       complexity:
         enabled: true
 
+ratings:
+  paths:
+    - "**.js"
+    - "**.es6"
+
 exclude_paths:
-  - test/**/*
+  - "test/**/*"
