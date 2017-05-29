@@ -4,7 +4,7 @@ const path = require('path');
 const getit = require('../');
 
 const opts = {
-  cwd: __dirname,
+  cwd: __dirname
 };
 
 describe('streamed download test', () => {

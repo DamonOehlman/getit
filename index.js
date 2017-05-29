@@ -1,6 +1,3 @@
-/* jshint node: true */
-
-
 const debug = require('debug')('getit');
 const fs = require('fs');
 const path = require('path');
@@ -8,7 +5,7 @@ const request = require('hyperquest');
 const urlish = require('urlish');
 
 // regexes
-const reRemote = /^\w[\w\.\+\-]+\:\/\//;
+const reRemote = /^\w[\w.+-]+:\/\//;
 const reStatusCached = /^304$/;
 const reStatusOK = /^(2|3)\d+/;
 
@@ -107,10 +104,7 @@ const cache = require('./cache');
 
 **/
 
-const getit = module.exports = function(target, opts, callback) {
-  let targetUrl;
-  let requestOpts;
-
+const getit = (target, opts, callback) => {
   // check for options being omitted
   if (typeof opts === 'function') {
     callback = opts;
@@ -127,12 +121,12 @@ const getit = module.exports = function(target, opts, callback) {
   }
 
   // get the target url
-  targetUrl = getUrl(target);
+  const targetUrl = getUrl(target);
 
   // initialise the request opts
-  requestOpts = {
+  const requestOpts = {
     method: 'GET',
-    uri: targetUrl,
+    uri: targetUrl
   };
 
   // if we don't have a callback, return a request stream
@@ -146,7 +140,7 @@ const getit = module.exports = function(target, opts, callback) {
     // if we have cache data then add the if-none-match header
     if (cacheData.etag) {
       requestOpts.headers = {
-        'If-None-Match': cacheData.etag,
+        'If-None-Match': cacheData.etag
       };
     }
 
@@ -190,7 +184,7 @@ const getit = module.exports = function(target, opts, callback) {
   return null;
 };
 
-var getLocal = getit.local = function(target, opts, callback) {
+const getLocal = (target, opts, callback) => {
   const targetFile = path.resolve(opts.cwd, target);
 
   // if we don't have a callback, return a stream
@@ -209,7 +203,7 @@ var getLocal = getit.local = function(target, opts, callback) {
   return null;
 };
 
-var getUrl = getit.getUrl = function(target) {
+const getUrl = (target) => {
   const parts = urlish(target);
   let translator;
 
@@ -234,9 +228,11 @@ var getUrl = getit.getUrl = function(target) {
   return target;
 };
 
-var isRemote = getit.isRemote = function(target) {
-  return reRemote.test(target);
-};
+const isRemote = target => reRemote.test(target);
 
+getit.getLocal = getLocal;
+getit.getUrl = getUrl;
+getit.getCacheTarget = cache.getCacheTarget;
+getit.isRemote = isRemote;
 
-getit.getCacheTarget = cache.getTarget;
+module.exports = getit;

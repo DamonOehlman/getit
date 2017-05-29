@@ -4,13 +4,13 @@ const getit = require('../');
 const checks = {
   http: {
     before: 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js',
-    after: 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js',
+    after: 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'
   },
 
   github: {
     before: 'github://DamonOehlman/getit/index.js',
-    after: 'https://raw.github.com/damonoehlman/getit/master/index.js',
-  },
+    after: 'https://raw.github.com/damonoehlman/getit/master/index.js'
+  }
 };
 
 function check(section) {

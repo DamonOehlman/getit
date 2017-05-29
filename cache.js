@@ -1,30 +1,24 @@
-/* jshint node: true */
-
-
 const mkdirp = require('mkdirp');
 const path = require('path');
 const fs = require('fs');
-const reCharset = /^.*charset\=(.*)$/;
-const reInvalidCacheChars = /(\:\/+|\/+|\.(?!\w+$))/g;
+
+const reCharset = /^.*charset=(.*)$/;
+const reInvalidCacheChars = /(:\/+|\/+|\.(?!\w+$))/g;
 
 /**
 ## getit cache helpers
 
 ### cache.get(target, opts, callback)
 **/
-exports.get = function(target, opts, callback) {
+const get = (target, opts, callback) => {
   let cacheData = {};
-  let cacheFile;
-  let metaFile;
 
   // if we have no cache folder, then trigger the callback with no data
   if (!opts.cachePath) {
     callback(cacheData);
-  }
-  // otherwise, look for an etag file
-  else {
-    cacheFile = path.resolve(opts.cachePath, getCacheTarget(target));
-    metaFile = `${cacheFile}.meta`;
+  } else {
+    const cacheFile = path.resolve(opts.cachePath, getCacheTarget(target));
+    const metaFile = `${cacheFile}.meta`;
 
     // read the etag file
     fs.readFile(metaFile, 'utf8', (err, data) => {
@@ -55,11 +49,11 @@ exports.get = function(target, opts, callback) {
 /**
 ### cache.update(target, opts, resErr, res, body, callback)
 **/
-exports.update = function(target, opts, resErr, res, body, callback) {
-  let cacheFile;
-  let meta;
-  const cacheable = opts.cachePath && (!resErr) && res.headers &&
-      (opts.cacheAny || res.headers.etag);
+const update = (target, opts, resErr, res, body, callback) => {
+  const cacheable = opts.cachePath
+    && (!resErr)
+    && res.headers
+    && (opts.cacheAny || res.headers.etag);
 
   // if not cacheable return
   if (!cacheable) {
@@ -67,8 +61,8 @@ exports.update = function(target, opts, resErr, res, body, callback) {
   }
 
   // initialise the cache filename and metafile
-  cacheFile = path.resolve(opts.cachePath, getCacheTarget(target));
-  meta = `${cacheFile}.meta`;
+  const cacheFile = path.resolve(opts.cachePath, getCacheTarget(target));
+  const meta = `${cacheFile}.meta`;
 
   // do the caching thing
   mkdirp(opts.cachePath, (err) => {
@@ -88,8 +82,10 @@ exports.update = function(target, opts, resErr, res, body, callback) {
   });
 };
 
-/* internals */
+const getCacheTarget = target => target.replace(reInvalidCacheChars, '-');
 
-var getCacheTarget = exports.getTarget = function(target) {
-  return target.replace(reInvalidCacheChars, '-');
+module.exports = {
+  get,
+  update,
+  getCacheTarget
 };

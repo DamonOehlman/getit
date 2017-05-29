@@ -5,7 +5,7 @@ const getit = require('../');
 
 const testfile = path.resolve(__dirname, 'test.txt');
 const opts = {
-  cwd: __dirname,
+  cwd: __dirname
 };
 
 describe('streamed download test', () => {
