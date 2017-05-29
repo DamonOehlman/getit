@@ -1,30 +1,31 @@
-var assert = require('assert'),
-    fs = require('fs'),
-    path = require('path'),
-    getit = require('../'),
-    testfile = path.resolve(__dirname, 'test.txt'),
-    testContent,
-    opts = {
-        cwd: __dirname
-    };
+const assert = require('assert');
+const fs = require('fs');
+const path = require('path');
+const getit = require('../');
 
-describe('streamed download test', function() {
-    before(function(done) {
-        fs.readFile(path.resolve(__dirname, 'files/test.txt'), 'utf8', function(err, data) {
-            if (! err) {
-                testContent = data;
-            }
+const opts = {
+  cwd: __dirname
+};
 
-            done(err);
-        });
+describe('streamed download test', () => {
+  let testContent = '';
+
+  before((done) => {
+    fs.readFile(path.resolve(__dirname, 'files/test.txt'), 'utf8', (err, data) => {
+      if (!err) {
+        testContent = data;
+      }
+
+      done(err);
     });
-    
-    it('should be able to get a local file', function(done) {
-      getit('files/test.txt', opts, function(err, data) {
-        assert.ifError(err);
-        assert.equal(data, testContent);
-  
-        done();
-      });
+  });
+
+  it('should be able to get a local file', (done) => {
+    getit('files/test.txt', opts, (err, data) => {
+      assert.ifError(err);
+      assert.equal(data, testContent);
+
+      done();
     });
+  });
 });
