@@ -1,3 +1,9 @@
 engines:
   eslint:
     enabled: true
+    checks:
+      complexity:
+        enabled: true
+
+exclude_paths:
+  - test/**/*

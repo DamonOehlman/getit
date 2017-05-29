@@ -17,7 +17,7 @@
     "no-shadow": [0],
     "consistent-return": [0],
     "no-param-reassign": [0],
-    "global-require": [1],
-    "import/no-dynamic-require": [1]
+    "global-require": [0],
+    "import/no-dynamic-require": [0]
   }
 }
