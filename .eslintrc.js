@@ -1,6 +1,12 @@
 module.exports = {
-    "extends": "airbnb-base",
-    "plugins": [
-        "import"
-    ]
+    extends: [
+      "djo-base",
+      "plugin:jasmine/recommended"
+    ],
+    plugins: [
+        "jasmine"
+    ],
+    "env": {
+      jasmine: true
+    }
 };

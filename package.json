@@ -12,9 +12,8 @@
   },
   "stability": "stable",
   "devDependencies": {
-    "eslint": "^3.19.0",
-    "eslint-config-airbnb-base": "^11.2.0",
-    "eslint-plugin-import": "^2.3.0",
+    "eslint-config-djo-base": "damonoehlman/eslint-config-djo-base",
+    "eslint-plugin-jasmine": "^2.2.0",
     "mocha": "^3.2.0",
     "rimraf": "^2"
   },
