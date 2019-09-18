@@ -5,18 +5,20 @@
   "version": "1.1.0",
   "main": "index.js",
   "dependencies": {
-    "debug": "^2.6.1",
+    "debug": "^4.1.1",
     "hyperquest": "^2.1.2",
     "mkdirp": "~0.5",
     "urlish": "^1.0.1"
   },
   "stability": "stable",
   "devDependencies": {
-    "eslint": "^3.19.0",
+    "embellish-readme": "^1.5.2",
+    "eslint": "^6.4.0",
     "eslint-config-djo-base": "github:damonoehlman/eslint-config-djo-base",
-    "eslint-plugin-mocha": "^4.9.0",
-    "mocha": "^3.2.0",
-    "rimraf": "^2"
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-mocha": "^6.1.1",
+    "mocha": "^6.2.0",
+    "rimraf": "^3.0.0"
   },
   "repository": {
     "type": "git",
@@ -26,7 +28,7 @@
     "url": "http://github.com/DamonOehlman/getit/issues"
   },
   "scripts": {
-    "gendocs": "gendocs > README.md",
+    "gendocs": "embellish README.md",
     "lint": "eslint .",
     "test": "$(npm bin)/mocha --reporter spec -t 20s"
   },

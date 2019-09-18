@@ -5,11 +5,6 @@ const fs = require('fs');
 const reCharset = /^.*charset=(.*)$/;
 const reInvalidCacheChars = /(:\/+|\/+|\.(?!\w+$))/g;
 
-/**
-## getit cache helpers
-
-### cache.get(target, opts, callback)
-**/
 const get = (target, opts, callback) => {
   let cacheData = {};
 
@@ -46,9 +41,6 @@ const get = (target, opts, callback) => {
   }
 };
 
-/**
-### cache.update(target, opts, resErr, res, body, callback)
-**/
 const update = (target, opts, resErr, res, body, callback) => {
   const cacheable = opts.cachePath
     && (!resErr)
