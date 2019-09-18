@@ -1,4 +1,3 @@
-
 # getit
 
 This is a simple remote file loader that makes it easy to open both local
@@ -6,10 +5,9 @@ and remote files in a simple (and consistent) way.  Behind the scenes getit
 uses [hyperquest](https://github.com/substack/hyperquest) module to to the
 heavy lifting.
 
-
 [![NPM](https://nodei.co/npm/getit.png)](https://nodei.co/npm/getit/)
 
-[![stable](https://img.shields.io/badge/stability-stable-green.svg)](https://github.com/dominictarr/stability#stable) [![Build Status](https://api.travis-ci.org/DamonOehlman/getit.svg?branch=master)](https://travis-ci.org/DamonOehlman/getit) [![bitHound Score](https://www.bithound.io/github/DamonOehlman/getit/badges/score.svg)](https://www.bithound.io/github/DamonOehlman/getit) 
+[![stable](https://img.shields.io/badge/stability-stable-green.svg)](https://github.com/dominictarr/stability#stable) [![Build Status](https://api.travis-ci.org/DamonOehlman/getit.svg?branch=master)](https://travis-ci.org/DamonOehlman/getit) [![Maintainability](https://api.codeclimate.com/v1/badges/e34775d145b1886389b8/maintainability)](https://codeclimate.com/github/DamonOehlman/getit/maintainability)
 
 ## Example Usage
 
@@ -52,7 +50,7 @@ without having to dramatically change the way you use the library.
 The `getit` function supports a second argument for providing options to
 change the default getit behaviour.
 
-### Caching use `cachePath`
+### Caching use   `cachePath`
 
 If you provide an optional `cachePath`, then getit will cache a copy of
 the data retrieved in the specified path.  In addition to the data
@@ -82,9 +80,9 @@ Finally, if you would prefer not to wait around for a HTTP request and
 a `304` response, then you can provide the `preferLocal` option always
 used the cached copy of a file if it exists in the cache folder.
 
-### Aggressive caching with `preferLocal`
+### Aggressive caching with   `preferLocal`
 
-If you __really__ want to avoid a round-trip to web servers to check the
+If you **really** want to avoid a round-trip to web servers to check the
 freshness of the cache, then it might be worth using the `preferLocal`
 option also.  This instructs getit to skip the `etag` check if it finds
 the required file in the cache directory.
@@ -133,7 +131,7 @@ getit('gist://DamonOehlman:6877717/index.js', function(err, content) {
 });
 ```
 
-__NOTE:__ Github recently changed the way gist raw urls were formatted
+**NOTE:** Github recently changed the way gist raw urls were formatted
 which has meant a change is needed in the getit format.  You must now also
 include the username of the owner of the gist when requesting the file
 as shown in the examples above.
@@ -145,27 +143,26 @@ getit('github://DamonOehlman/getit/index.js', function(err, data) {
 });
 ```
 
-## License(s)
+## Licence
 
-### MIT
+The MIT License (MIT)
 
-Copyright (c) 2017 Damon Oehlman <damon.oehlman@gmail.com>
+Copyright (c) 2019 Damon Oehlman <damon.oehlman@gmail.com>
 
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

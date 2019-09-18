@@ -54,7 +54,7 @@ describe('caching tests', () => {
   });
 
   it('should used the cached file if we have an etag match', (done) => {
-        // update the cache file with content that we can test
+    // update the cache file with content that we can test
     fs.writeFile(cacheFile, cacheTextOverride, 'utf8', (writeError) => {
       if (writeError) {
         done(writeError);
