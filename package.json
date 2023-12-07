@@ -5,7 +5,7 @@
   "version": "1.2.0",
   "main": "index.js",
   "dependencies": {
-    "debug": "^4.1.1",
+    "debug": "^4.3.1",
     "hyperquest": "^2.1.2",
     "mkdirp": "~0.5",
     "urlish": "^1.0.1"
